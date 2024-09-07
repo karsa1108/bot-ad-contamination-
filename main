@@ -1,0 +1,28 @@
+import discord
+intents = discord.Intents.default()
+intents.message_content = True
+client = discord.Client(intents=intents)
+@client.event
+async def on_ready():
+    print(f'Hemos iniciado sesión como {client.user}')
+
+url=["https://www.youtube.com/watch?v=cvakvfXj0KE"]
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    if message.content.startswith('$hello'):
+        await message.channel.send("Hi!")
+    
+    if message.content.startswith('$3R'):
+        await message.channel.send("¡Las_tres_R_reduce_reutiliza_recicla!")
+    if message.content.startswith('$dato_interesante'):
+        await message.channel.send("Sabias que.... Una tonelada de plástico reciclado puede ahorrar hasta 7.500 litros de gasolina.")
+    
+    elif message.content.startswith('$bye'):
+        await message.channel.send("\\U0001f642")
+    else:
+        await message.channel.send(message.content)
+
+client.run("")
